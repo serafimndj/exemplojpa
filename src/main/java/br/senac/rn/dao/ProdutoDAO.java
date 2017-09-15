@@ -10,49 +10,48 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 
-public class CategoriaDAO {
+public class ProdutoDAO {
     
     private EntityManager manager; // gerenciador de entidades
     private EntityManagerFactory factory; //conexão com o banco
 
-    public CategoriaDAO() {
+    public ProdutoDAO() {
         factory = Persistence.createEntityManagerFactory("ConexaoDB");
         manager = factory.createEntityManager();
-    }
-    
-    public void inserir(Categoria categoria) {  //void - não tem retorno
+}
+    public void inserir(Produto produto) {  //void - não tem retorno
         manager.getTransaction().begin();
-        manager.persist(categoria); //INSERIR
+        manager.persist(produto); //INSERIR
         manager.getTransaction().commit();
     }
     
-    public void excluir(Categoria categoria) {
+    public void excluir(Produto produto) {
     manager.getTransaction().begin();
-    manager.remove(categoria); //EXCLUIR
+    manager.remove(produto); //EXCLUIR
     manager.getTransaction().commit();
         }
         
-    public void atualizar(Categoria categoria) {
+    public void atualizar(Produto produto) {
     manager.getTransaction().begin();
-    manager.merge(categoria); //ATUALIZAR
+    manager.merge(produto); //ATUALIZAR
     manager.getTransaction().commit();
         }
 
 
-    public List<Categoria> buscarTodos() {
-        TypedQuery<Categoria> consulta = manager.createQuery("SELECT c FROM Categoria c", Categoria.class);
+    public List<Produto> buscarTodos() {
+        TypedQuery<Produto> consulta = manager.createQuery("SELECT p FROM Categoria p", Produto.class);
         return consulta.getResultList();
         
 }
     
-    public Categoria buscarPorId(int id) {
-        return manager.find(Categoria.class, id);
-        
-    }
-
-    public void inserir(Produto p1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Produto buscarPorId(int id) {
+        return manager.find(Produto.class, id);
+    
+    
+    
+    
+}
 }
 
-        
+
+
