@@ -2,12 +2,16 @@
 package br.senac.rn.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -16,22 +20,38 @@ public class Venda implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToMany
+    @ManyToOne
     private Cliente cliente;
     @ManyToMany
     private List<Produto> produtos;
-    @ManyToMany
+    @Temporal(TemporalType.DATE)
+    private Calendar data; //Calendar (data e hora)
     private float valor;
 
     public Venda() {}
 
-    public Venda(int id, Cliente cliente, List<Produto> produtos, float valor) {
-        this.id = id;        
+    public Venda(Cliente cliente, List<Produto> produtos, Calendar data, float valor) {
         this.cliente = cliente;
         this.produtos = produtos;
+        this.data = data;
         this.valor = valor;
-        
-         }
+    }
+
+    public Venda(int id, Cliente cliente, List<Produto> produtos, Calendar data, float valor) {
+        this.id = id;
+        this.cliente = cliente;
+        this.produtos = produtos;
+        this.data = data;
+        this.valor = valor;
+    }
+
+    public Calendar getData() {
+        return data;
+    }
+
+    public void setData(Calendar data) {
+        this.data = data;
+    }    
 
     public int getId() {
         return id;
@@ -91,6 +111,8 @@ public class Venda implements Serializable {
     public String toString() {
         return "Venda{" + "id=" + id + ", cliente=" + cliente + ", produtos=" + produtos + ", valor=" + valor + '}';
     }
+
+    
     
        
 }

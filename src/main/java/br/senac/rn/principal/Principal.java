@@ -20,8 +20,8 @@ public class Principal {
 //       s3.setNome("Outro");
 //       s3.setSigla('O');
 //       
-        SexoDAO dao = new SexoDAO();
-//        
+//        SexoDAO dao = new SexoDAO();
+        
 //       dao.inserir(s1);
 //       dao.inserir(s2);
 //       dao.inserir(s3);
@@ -38,7 +38,7 @@ public class Principal {
 //        dao.atualizar(s4);//atualizar informações no banco
           
           
-          
+        new SexoDAO().insert(new Sexo(0, "Masculino", 'M'));  
         System.exit(0);
         
         

@@ -17,23 +17,27 @@ public class VendaDAO {
     public VendaDAO() {
     factory = Persistence.createEntityManagerFactory("ConexaoDB");
     manager = factory.createEntityManager();
+    
     }
     public void inserir(Venda venda) {  //void - não tem retorno
     manager.getTransaction().begin();
     manager.persist(venda); //INSERIR
     manager.getTransaction().commit();
+    manager.close(); //finalizar o comando
     }
     
-    public void excluir(Venda venda) {
+    public void excluir(Venda venda) { //Venda(classe) venda(objeto)
     manager.getTransaction().begin();
     manager.remove(venda); //EXCLUIR
     manager.getTransaction().commit();
+    manager.close(); //finalizar o comando
         }
         
     public void atualizar(Venda venda) {
     manager.getTransaction().begin();
     manager.merge(venda); //ATUALIZAR
     manager.getTransaction().commit();
+    manager.close(); //finalizar o comando
         }
 
 
@@ -45,6 +49,7 @@ public class VendaDAO {
     
     public Venda buscarPorId(int id) {
         return manager.find(Venda.class, id);
+        
     
 }
 }
