@@ -56,11 +56,11 @@ public class ClienteDAO extends GenericDAO<Cliente> {
 //    
 //    }
 //
-//    public Cliente buscarPorCpf(String cpf) {
-//        String jpql = "SELECT c FROM Cliente c WHERE c.cpf = :cpfCliente";
-//        TypedQuery<Cliente> consulta = manager.createQuery(jpql, Cliente.class);
-//        consulta.setParameter("cpfCliente", cpf);
-//        return consulta.getSingleResult(); //getsinglesresult - trará apenas um resultado
+    public Cliente buscarPorCpf(String cpf) {
+        String jpql = "SELECT c FROM Cliente c WHERE c.cpf = :cpfCliente";
+        TypedQuery<Cliente> consulta = manager.createQuery(jpql, Cliente.class);
+        consulta.setParameter("cpfCliente", cpf);
+        return consulta.getSingleResult(); //getsinglesresult - trará apenas um resultado
 //    }
 //    
 //     public List<Cliente> buscarPorQualquerParteCpf(String cpf) { //busca por qualquer parte do cpf
